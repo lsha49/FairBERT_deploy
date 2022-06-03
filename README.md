@@ -67,7 +67,7 @@ BertForNextSentencePrediction.from_pretrained("bert-base-uncased")
 
 ## AL sampling implementation detail
 AL sampling is implemented by [alipy](http://parnec.nuaa.edu.cn/huangsj/alipy/)
-See a sample implmentation in ```MALSample```.
+See a sample implmentation of QBC in ```MALSample```.
 
 ```
 alibox.get_query_strategy(strategy_name='QueryInstanceQBC').select(labelledSet, unLabelledSet, model=xxx, batch_size=xxx)
