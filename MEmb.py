@@ -13,27 +13,12 @@ from sklearn.metrics import cohen_kappa_score
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import f1_score
 
-# tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-# model = AutoModelForSequenceClassification.from_pretrained("saved_model/further_1/checkpoint-6500", output_hidden_states=True, local_files_only=True)
-# model = BertForSequenceClassification.from_pretrained("saved_model/further_1/checkpoint-6500", output_hidden_states=True)
-# model = BertForSequenceClassification.from_pretrained("bert-base-cased", output_hidden_states=True)
+tokenizer = AutoTokenizer.from_pretrained(xxx,model_max_length=512)
+model = AutoModelForSequenceClassification.from_pretrained("../../xxx", output_hidden_states=True)
 
-tokenizer = AutoTokenizer.from_pretrained("bert-base-cased",model_max_length=512)
+Corpus = pd.read_csv('xxx', encoding='latin-1')
 
-# model = AutoModelForSequenceClassification.from_pretrained("bert-base-cased", output_hidden_states=True)
-
-model = AutoModelForSequenceClassification.from_pretrained("../../uq67_scratch/bfiledata/lele_test_lang", output_hidden_states=True)
-
-# model = AutoModelForSequenceClassification.from_pretrained("../../uq67_scratch/saved_model/100checkpoint/checkpoint-46000", output_hidden_states=True)
-
-
-# Monash_fine_tune
-# Monash_fine_tune_test_incre
-Corpus = pd.read_csv('Monash_fine_tune.csv', encoding='latin-1')
-
-
-excep = 0
-for index,entry in enumerate(Corpus['forum_message']):
+for index,entry in enumerate(Corpus['xxx']):
     input_ids = torch.tensor(tokenizer.encode(entry,truncation=True)).unsqueeze(0)  
     outputs = model(input_ids)
 
@@ -45,4 +30,4 @@ for index,entry in enumerate(Corpus['forum_message']):
         Corpus.loc[index, iindex] = str(ientry)
 
 # Monash_fine_tune_clean_embed
-Corpus.to_csv('../../uq67_scratch/bfiledata/Monash_fine_tune_test_embed.csv',index=False)
+Corpus.to_csv('../../xxx',index=False)

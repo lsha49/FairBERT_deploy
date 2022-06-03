@@ -31,20 +31,24 @@ from sklearn.model_selection import GridSearchCV
 import json
 import nltk
 import textstat
-from alipy import ToolBox
-from collections.abc import Iterable
-from alipy.query_strategy import QueryInstanceLAL,QueryInstanceQUIRE,QueryInstanceSPAL
-from imblearn.under_sampling import RandomUnderSampler
-from deslib.util.instance_hardness import kdn_score
-from scipy.spatial import distance
 
-class Selector(object):
-    def AlSamples(self,X,y,labelledSet,unLabelledSet): 
-        alibox = ToolBox(X=X, y=y)
-        # QueryInstanceQBC
-        # QueryInstanceUncertainty
-        # QueryExpectedErrorReduction
-        # QueryInstanceLAL
-        # ...etc.,
-        Strategy = alibox.get_query_strategy(strategy_name='XXX')
-        select_ind = Strategy.select(labelledSet, unLabelledSet, model=xxx, batch_size=xxx)
+FileName = 'data/XXX'
+Corpus = pd.read_csv(FileName, encoding='latin-1')
+
+for index,entry in enumerate(Corpus['forum_message']):
+    sents = sent_tokenize(entry)
+    
+    if index > 0:
+        with open('data/XXX', 'a') as f:
+                f.write("\n")
+    
+    for sent in sents: 
+        sent = sent.replace("   ", "")
+        sent = sent[:XXX]
+        with open('data/XXX', 'a') as f:
+            if index > 0:
+                f.write("\n")
+            f.write(sent)
+    
+
+
