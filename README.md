@@ -49,17 +49,28 @@ lrc = LogisticRegression(C=4.281332398719396, class_weight=None, dual=False,
 ```
 
 ## Embedding extraction implementation detail
-A sample embedding extraction from BERT model is implemented in ```MEmb.py``
+A sample embedding extraction from BERT model is implemented in ```MEmb.py``, where embedding of the final output layer of BERT is extracted.
 
+```
+outputs = model(input_ids)
+```
 
 ## Further pretraining implementation detail
 We followed the same pretraining procedule as shown in [huggingface](https://huggingface.co/docs/transformers/model_doc/bert#overview)
 See a sample implmentation in ```MTrain```.
+
+```
+BertForMaskedLM.from_pretrained("bert-base-uncased")
+BertForNextSentencePrediction.from_pretrained("bert-base-uncased")
+```
 
 
 ## AL sampling implementation detail
 AL sampling is implemented by [alipy](http://parnec.nuaa.edu.cn/huangsj/alipy/)
 See a sample implmentation in ```MALSample```.
 
+```
+alibox.get_query_strategy(strategy_name='QueryInstanceQBC').select(labelledSet, unLabelledSet, model=xxx, batch_size=xxx)
+```
 
 
