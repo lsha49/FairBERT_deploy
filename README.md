@@ -4,7 +4,7 @@ An python repository to perform fair sampling which is applied in submitted pape
 Download this repository with `git clone` or equivalent.
 
 ```bash
-git clone @repo
+git clone https://github.com/lsha49/FairBERT_deploy.git
 ```
 
 ## Requirements  
