@@ -19,7 +19,7 @@ git clone https://github.com/lsha49/FairBERT_deploy.git
 ## Seed Dataset with hardness constraint
 We detail below how to implement hardness constraint (H-bias) on seed dataset. See example code in ```Util.py```
 
-### Hardness Bias
+## Hardness Bias
 After generating samples, we evaluate the kDN distribution by ``` distance.jensenshannon ``` and selected samples which lower H-bias. The H-bias can be calculated by ``` calKDN ``` function.
 
 
