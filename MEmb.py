@@ -29,5 +29,4 @@ for index,entry in enumerate(Corpus['xxx']):
     for iindex,ientry in enumerate(finalEmb):
         Corpus.loc[index, iindex] = str(ientry)
 
-# Monash_fine_tune_clean_embed
 Corpus.to_csv('../../xxx',index=False)

@@ -31,18 +31,8 @@ class Util(object):
         Returns
         -------
         """
-        # @todo import data
+        # @todo import data and preprocessing
         Corpus = pd.read_csv(filename, encoding='') 
-
-        # @todo train test split
-        # Train_X, Test_X, Train_Y, Test_Y = model_selection.train_test_split(Corpus.to_numpy(), Corpus[useLabel], test_size=, random_state=)        
-
-        # @todo generate samples by Data Balancing Techniques
-        # self.cbt()
-        
-        # @todo calculate KDN and hardness bias (hard-bias)
-        # self.calKDN()
-                
 
 
     def calKDN(self, features, labels,  List00Index, List01Index, List10Index, List11Index): 

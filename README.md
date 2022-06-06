@@ -1,5 +1,5 @@
-# FairBERT: Fair pretraining of BERT for Fair Modeling in Education
-An python repository to perform educational dataset balancing applied in submitted paper in @todo. 
+# FairBERT: Fair sampling to pretrain of BERT
+An python repository to perform fair sampling which is applied in submitted paper in @todo. 
 
 Download this repository with `git clone` or equivalent.
 
@@ -16,14 +16,14 @@ git clone @repo
 * Sklearn > 0.19.0  
 
 
-## Seed Dataset, Hardness Bias and Fairness implementation 
-We detail below how to implement hard-bias and fairness evaluation. See example code in ```Util.py```
+## Seed Dataset with hardness constraint
+We detail below how to implement hardness constraint (H-bias) on seed dataset. See example code in ```Util.py```
 
 ### Hardness Bias
-After generating samples, we evaluate the kDN distribution by ``` distance.jensenshannon ``` and selected the lowest H-bias samples. The H-bias can be calculated by ``` calKDN ``` function.
+After generating samples, we evaluate the kDN distribution by ``` distance.jensenshannon ``` and selected samples which lower H-bias. The H-bias can be calculated by ``` calKDN ``` function.
 
 
-### Fairness Evaluation 
+## Fairness Evaluation 
 We applied ``` abroca ``` package in [ABROCA](https://pypi.org/project/abroca/). A sample calculation of ABROCA: 
 ```
 slice = compute_abroca(abrocaDf, 
@@ -39,7 +39,6 @@ slice = compute_abroca(abrocaDf,
 
 ## Model implementation detail
 A Logistic regression model is implemented in ```Util.py``` by ``` logisticRegression ``` function. 
-
 ```
 A sample GridSearched model: 
 lrc = LogisticRegression(C=4.281332398719396, class_weight=None, dual=False,
@@ -49,15 +48,14 @@ lrc = LogisticRegression(C=4.281332398719396, class_weight=None, dual=False,
 ```
 
 ## Embedding extraction implementation detail
-A sample embedding extraction from BERT model is implemented in ```MEmb.py``, where embedding of the final output layer of BERT is extracted.
-
+A sample embedding extraction from BERT model is implemented in ```MEmb.py``, where BERT embedding is extracted.
 ```
-outputs = model(input_ids)
+hidden_states = model(torch.tensor(tokenizer.encode(entry,truncation=True)).unsqueeze(0))[1]
 ```
 
 ## Further pretraining implementation detail
 We followed the same pretraining procedule as shown in [huggingface](https://huggingface.co/docs/transformers/model_doc/bert#overview)
-See a sample implmentation in ```MTrain```.
+See a sample implmentation in ```MTrain.py```.
 
 ```
 BertForMaskedLM.from_pretrained("bert-base-uncased")
@@ -67,7 +65,8 @@ BertForNextSentencePrediction.from_pretrained("bert-base-uncased")
 
 ## AL sampling implementation detail
 AL sampling is implemented by [alipy](http://parnec.nuaa.edu.cn/huangsj/alipy/)
-See a sample implmentation of QBC in ```MALSample```.
+See a sample implmentation of QBC in ```MALSample.py```.
+See a comprehensive documentation of all the query selection function in [here](http://parnec.nuaa.edu.cn/_upload/tpl/02/db/731/template731/pages/huangsj/alipy/page_reference/api_classes/api_query_strategy.query_labels.QueryInstanceQBC.html)
 
 ```
 alibox.get_query_strategy(strategy_name='QueryInstanceQBC').select(labelledSet, unLabelledSet, model=xxx, batch_size=xxx)
